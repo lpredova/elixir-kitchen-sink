@@ -17,4 +17,4 @@ defmodule TodoList do
   end
 
 end
-# todo = TodoList.add_entry(todo, %{date: {2020,10,22}, title: "Dentist", tag: "Healthcare"})
+# todo = TodoList.add_entry(todo, %{date: {2020, 10, 22}, title: "Dentist", tag: "Healthcare"})
