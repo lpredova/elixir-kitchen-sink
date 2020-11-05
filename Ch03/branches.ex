@@ -7,16 +7,16 @@ defmodule Test do
         unless a >= b, do: b, else: a
     end
 
-    # like if else if 
+    # like if else if
     def max_cond(a, b) do
         cond do
             a >= b -> a
-        
+
         true -> b
         end
     end
 
-    def max_case(a,b) do 
+    def max_case(a,b) do
         case a >=b do
             true -> a
             false -> b
