@@ -13,7 +13,7 @@ end
 # tail calls?
 # tail-calls does not consume additional memory -> goto iinstad of stack
 # case when the last thing we do in function is calling other function
-defmodule ListHelper do 
+defmodule ListHelper do
     def sum(list) do
         do_sum(0, list)
     end
@@ -27,7 +27,7 @@ defmodule ListHelper do
         new_sum = head + current_sum
 
         # tail recursion call
-        do_sum(new_sum, tail)        
+        do_sum(new_sum, tail)
     end
 end
 
@@ -36,7 +36,7 @@ defmodule TestListLen do
         len(0 ,list)
     end
 
-    defp len(num_elements, []) do 
+    defp len(num_elements, []) do
         num_elements
     end
 
@@ -66,12 +66,12 @@ defmodule TestPositive do
         get_positive(list, [])
     end
 
-    defp get_positive([], result) do 
+    defp get_positive([], result) do
         Enum.reverse(result)
     end
 
     # getting positive values
-    defp get_positive([head | tail], result) when head > 0 do 
+    defp get_positive([head | tail], result) when head > 0 do
         get_positive(tail, [head | result])
     end
 
@@ -81,4 +81,3 @@ defmodule TestPositive do
     end
 
 end
-

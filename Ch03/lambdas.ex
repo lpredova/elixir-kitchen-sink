@@ -22,7 +22,7 @@ end
 defmodule Fact do
     def fact(0), do: 1
 
-    def fact(n), do: n * fact(n-1)        
+    def fact(n), do: n * fact(n-1)
 end
 
 defmodule ListHelper do
@@ -33,7 +33,7 @@ end
 defmodule LinesCounter do
     def count(path) do
         File.read(path)
-        |> lines_num    
+        |> lines_num
     end
 
     defp lines_num({:ok, contents}) do
@@ -42,7 +42,6 @@ defmodule LinesCounter do
         |> length
     end
 
-    defp lines_num(error), do: error 
+    defp lines_num(error), do: error
 
 end
-

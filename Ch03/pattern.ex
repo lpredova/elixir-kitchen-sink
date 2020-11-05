@@ -30,5 +30,3 @@ sport_bob = %{name: "Bob", age: 25, works_at: "Sportening"}
 [_,{name, _},_] =[{"Bob",21},{"John",30},{"Donald",41}]
 
 date_time_local = {_,{hour,_,_}} = :calendar.local_time
-
-

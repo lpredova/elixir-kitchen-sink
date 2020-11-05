@@ -11,7 +11,7 @@ defmodule Geometry do
     end
 end
 
-defmodule Circle do 
+defmodule Circle do
     @moduledoc """
     this is some descripiton of the module
     """
@@ -31,7 +31,7 @@ defmodule Geo2 do
     import IO
     alias IO, as: SomeIOAlias
 
-    # This is some comment 
+    # This is some comment
     def rectangle_area(a,b) do
         puts "Getting rectangle area"
         SomeIOAlias.puts("Some IO ALIAS call")

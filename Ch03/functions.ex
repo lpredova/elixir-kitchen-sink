@@ -17,7 +17,7 @@ print_elem = fn(x) -> IO.puts(x) end
 
 ### Closures
 outside_var = 5
-my_lambda = fn() -> 
+my_lambda = fn() ->
     IO.puts(outside_var)
 end
 
@@ -39,7 +39,7 @@ HashDict.get(daysHah, :monday)
 
 Enum.each(
     daysHah,
-    fn(key_value) -> 
+    fn(key_value) ->
         key = elem(key_value,0)
         value = elem(key_value,1)
         IO.puts "#{key} => #{value}"
@@ -64,6 +64,3 @@ IO.puts iolist
 ## only nil and false are falsy
 
 ## macros
-
-
-
