@@ -1,5 +1,8 @@
 # todo = TodoList.add_entry(todo, %{date: {2020, 10, 22}, task: "Dentist"})
+# todo = TodoList.add_entry(todo, %{date: {2020, 11, 06}, task: "Gym"})
+# todo = TodoList.add_entry(todo, %{date: {2020, 11, 08}, task: "Basketball"})
 # todo = TodoList.entries(todo,{2020,11,05})
+# TodoList.update_entry(todo, %{id: 2, date: {2020, 11,7}, task: "Gym 4 you"})
 
 defmodule TodoList do
   defstruct auto_id: 1, entries: %{}
@@ -39,6 +42,21 @@ defmodule TodoList do
     Enum.map(fn({_,entry}) -> entry end)
   end
 
+  def delete_entry(%TodoList{entries: entries} = todo_list, %{} = entry_to_delete) do
+
+    entry_id_to_delete = entry_to_delete.id
+
+    updated_entries = entries |>
+    Stream.filter(fn({_, entry}) -> entry_id_to_delete != entry.id end) |>
+    Enum.map(fn({_, entry}) -> entry end)
+
+    %TodoList{ todo_list| entries: updated_entries }
+  end
+
+  def update_entry(todo_list, %{} = new_entry) do
+    update_entry(todo_list, new_entry.id, fn(_) -> new_entry end)
+  end
+
   def update_entry(
     %TodoList{entries: entries} = todo_list,
     entry_id,
@@ -54,9 +72,12 @@ defmodule TodoList do
         old_entry_id = old_entry.id
 
         # %{} assertion that result of updater_fun will be map and checking that id was not changed, otherwise error will be invoked
+        # ^ means that we are trying to match the value
         new_entry = %{id: ^old_entry_id} = updater_fun.(old_entry)
         new_entries = Map.put(entries, entry_id, new_entry)
 
+        # If you have hierarchical data, you can’t directly modify part of it that resides deep in its tree.
+        # Instead, you have to walk down the tree to the particular part that needs to be modified and then transform it and all of its ancestors.
         %TodoList{todo_list |
           entries: new_entries
         }
@@ -65,3 +86,6 @@ defmodule TodoList do
 
 end
 # todo = TodoList.add_entry(todo, %{date: {2020, 10, 22}, title: "Dentist", tag: "Healthcare"})
+
+todo_list = [{1, %{date: {2020, 12, 19}, title: "Dentist"}},{2, %{date: {2020, 12, 01}, title: "Gym"}},{3, %{date: {2013, 12, 19}, title: "Dentist"}}] |> Enum.into(Map.new)
+put_in(todo_list[2][:title], "Movies") # Put in recusrively walks the tree -> protocols enable this feature
