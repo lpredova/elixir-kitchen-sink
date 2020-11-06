@@ -95,3 +95,55 @@ defmodule TodoList do
   end
 
 end
+
+#IO.inspect() -> to check every step output
+# TodoList.CsvImporter.import("todos.csv")
+defmodule TodoList.CsvImporter do
+  def import(path) do
+    path
+    |> read_lines
+    |> get_entities
+    |> TodoList.new()
+  end
+
+  defp read_lines(path) do
+    path
+    |> File.stream!()
+    |> Stream.map(&String.replace(&1,"\n",""))
+  end
+
+  defp get_entities(lines) do
+    lines
+    |> Stream.map(&format_data(&1))
+    |> Stream.map(&create_output(&1))
+  end
+
+  defp format_data(line) do
+   line
+      |> String.split(",")
+      |> convert_date
+  end
+
+  # create tuple from the data, title can be raw but the date has to be parsed further
+  defp convert_date([date_string, title]) do
+    { parse_date(date_string), title }
+  end
+
+  # creating date from parsed date string
+  defp parse_date(date_string) do
+    [year, month, day] = date_string
+      |> String.split("/")
+      |> Enum.map(&String.to_integer(&1))
+
+    {:ok, date} = Date.new(year,month,day)
+    date
+  end
+
+  # create map from the tuple
+  defp create_output({date, title}) do
+    %{date: date, title: title}
+  end
+
+end
+
+# TodoList.CsvImporter.import("todos.csv")

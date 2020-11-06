@@ -5,7 +5,7 @@ defmodule LearnElixirProject.MixProject do
     [
       app: :learn_elixir_project,
       version: "0.1.0",
-      elixir: "~> 1.11",
+      elixir: "~> 1.8.2",
       start_permanent: Mix.env() == :prod,
       deps: deps()
     ]
@@ -18,7 +18,7 @@ defmodule LearnElixirProject.MixProject do
     ]
   end
 
-  # Run "mix help deps" to learn about dependencies.
+# Run "mix help deps" to learn about dependencies.
   defp deps do
     [
       # {:dep_from_hexpm, "~> 0.3.0"},
