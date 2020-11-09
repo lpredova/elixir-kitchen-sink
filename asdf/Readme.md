@@ -20,6 +20,10 @@ asdf list elixir
 ```
 
 ```sh
+asdf install elixir 1.8.2
+```
+
+```sh
 asdf local elixir 1.8.2
 ```
 
@@ -35,6 +39,10 @@ asdf list-all erlang
 
 ```sh
 asdf list erlang
+```
+
+```sh
+asdf install erlang 22.2.8
 ```
 
 ```sh
